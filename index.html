@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sara Truffi Portfolio</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #fcfaf5;
+        font-family: Arial, sans-serif;
+        color: #5a3b4d;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      nav ul {
+        list-style: none;
+      }
+
+      nav ul li {
+        display: inline-block;
+        position: relative;
+        margin-right: 20px;
+      }
+
+      nav a {
+        text-decoration: none;
+        font-family: "Open Sans", sans-serif;
+        font-size: 17px;
+        color: #d14f9c;
+        padding: 8px 10px;
+        display: block;
+        transition: color 0.2s ease;
+      }
+
+      nav a:hover {
+        color: #ffb6db;
+      }
+
+      nav a:active {
+        color: #aa2f79;
+      }
+
+      nav a:visited {
+        color: #c6428f;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #ffffff;
+        min-width: 220px;
+        border-radius: 14px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+        border: 1px solid #f0dce8;
+        overflow: hidden;
+        z-index: 1000;
+      }
+
+      .dropdown-content li {
+        display: block;
+        margin: 0;
+      }
+
+      .dropdown-content a {
+        padding: 13px 16px;
+        color: #d14f9c;
+        transition: all 0.2s ease;
+      }
+
+      .dropdown-content a:hover {
+        background-color: #efefef;
+        color: #ffb6db;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .hero {
+        text-align: center;
+        padding: 82px 20px 50px;
+      }
+
+      .eyebrow {
+        font-size: 0.9em;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #b87aa0;
+        margin-bottom: 14px;
+      }
+
+      .hero h1 {
+        font-size: 3.6em;
+        color: #d14f9c;
+        margin-bottom: 18px;
+        line-height: 1.1;
+      }
+
+      .hero p {
+        font-size: 1.08em;
+        color: #7a5d6d;
+        max-width: 760px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      .meta-row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+      }
+
+      .meta-row span {
+        background: #fff0f7;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-size: 0.8em;
+        color: #d14f9c;
+        border: 1px solid #f3d6e6;
+      }
+
+      .section {
+        margin-top: 70px;
+      }
+
+      .section-box {
+        background: rgba(255, 255, 255, 0.92);
+        border-radius: 24px;
+        padding: 46px 34px;
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f1e3ea;
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 760px;
+        margin: 0 auto 34px;
+      }
+
+      .section-header h2 {
+        color: #d14f9c;
+        font-size: 2.2em;
+        margin-bottom: 12px;
+      }
+
+      .divider {
+        width: 44px;
+        height: 2px;
+        background: #d14f9c;
+        margin: 0 auto 18px;
+      }
+
+      .section-header p {
+        color: #7a5d6d;
+        line-height: 1.8;
+        font-size: 1.03em;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: #fffafc;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        border: 1px solid #f3e3eb;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-info {
+        padding: 24px;
+      }
+
+      .project-label {
+        display: inline-block;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #b87aa0;
+        background: #f8e8f1;
+        padding: 6px 10px;
+        border-radius: 999px;
+        margin-bottom: 12px;
+      }
+
+      .project-info h3 {
+        color: #c6428f;
+        font-size: 1.35em;
+        margin-bottom: 10px;
+      }
+
+      .project-info p {
+        color: #6d5c67;
+        font-size: 0.98em;
+        line-height: 1.7;
+        margin-bottom: 22px;
+      }
+
+      .view-button {
+        display: inline-block;
+        text-decoration: none;
+        background: transparent;
+        color: #c6428f;
+        border: 1.5px solid #d98ab7;
+        padding: 11px 18px;
+        border-radius: 999px;
+        font-size: 0.95em;
+        transition: all 0.2s ease;
+      }
+
+      .view-button:hover {
+        background-color: #d14f9c;
+        color: white;
+        border-color: #d14f9c;
+      }
+
+      .audio-placeholder {
+        height: 220px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #f8ebf3, #fcfaf5);
+        color: #d14f9c;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .audio-placeholder::before {
+        content: "";
+        position: absolute;
+        width: 180px;
+        height: 180px;
+        border-radius: 50%;
+        background: rgba(209, 79, 156, 0.08);
+        top: -40px;
+        right: -40px;
+      }
+
+      .audio-placeholder::after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 1px;
+        background: repeating-linear-gradient(
+          to right,
+          #d98ab7 0px,
+          #d98ab7 8px,
+          transparent 8px,
+          transparent 14px
+        );
+        bottom: 52px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0.8;
+      }
+
+      .audio-tag {
+        font-size: 0.75em;
+        letter-spacing: 1.8px;
+        text-transform: uppercase;
+        color: #b87aa0;
+        margin-bottom: 10px;
+        z-index: 1;
+      }
+
+      .audio-placeholder h3 {
+        font-size: 1.5em;
+        margin-bottom: 8px;
+        z-index: 1;
+      }
+
+      .audio-placeholder p {
+        font-size: 0.95em;
+        opacity: 0.85;
+        z-index: 1;
+      }
+
+      footer {
+        background-color: #d14f9c;
+        color: white;
+        text-align: center;
+        padding: 22px 0;
+        margin-top: 60px;
+        font-family: "Open Sans", sans-serif;
+        font-size: 0.95em;
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          padding: 16px;
+        }
+
+        nav ul li {
+          display: block;
+          margin-bottom: 10px;
+          margin-right: 0;
+        }
+
+        .dropdown-content {
+          position: static;
+          display: block;
+          box-shadow: none;
+          background: transparent;
+          border: none;
+          border-radius: 0;
+          min-width: unset;
+          margin-left: 10px;
+        }
+
+        .dropdown-content a {
+          padding: 8px 10px;
+          background: transparent;
+        }
+
+        .hero {
+          padding: 56px 12px 36px;
+        }
+
+        .hero h1 {
+          font-size: 2.5em;
+        }
+
+        .section-box {
+          padding: 30px 20px;
+        }
+
+        .section-header h2 {
+          font-size: 1.75em;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <nav>
+        <ul>
+          <li><a href="https://sstruffi.github.io/home.html/">Home</a></li>
+
+          <li class="dropdown">
+            <a href="#">Projects</a>
+            <ul class="dropdown-content">
+              <li><a href="#videography">Videography</a></li>
+              <li><a href="#branding">Branding</a></li>
+              <li><a href="#web-app">Web and App</a></li>
+              <li><a href="#graphic-design">Graphic Design</a></li>
+            </ul>
+          </li>
+
+          <li><a href="https://sstruffi.github.io/aboutme.html/">About Me</a></li>
+          <li><a href="https://sstruffi.github.io/contactme.html/">Contact Me</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <section class="hero">
+        <p class="eyebrow">Selected Work</p>
+        <h1>Portfolio</h1>
+        <p>
+          A collection of work a ross videography, web and app design, branding,
+          and graphic design. These projects reflect my interest in storytelling,
+          usability, visual systems, and creating work that feels thoughtful and expressive.
+        </p>
+
+        <div class="meta-row">
+          <span>Videography</span>
+          <span>UX / App Design</span>
+          <span>Branding</span>
+          <span>Graphic Design</span>
+        </div>
+      </section>
+    </div>
+
+    <div class="container section" id="videography">
+      <section class="section-box">
+        <div class="section-header">
+          <h2>Videography</h2>
+          <div class="divider"></div>
+          <p>
+            Film and video projects exploring storytelling, atmosphere, editing,
+            and audience experience through visual and sound-based media.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <div class="project-card">
+            <img src="slient.jpeg" alt="Preview image for Huether Hotel Portrait">
+            <div class="project-info">
+              <p class="project-label">Silent Documentary</p>
+              <h3>Huether Hotel Portrait</h3>
+              <p>
+                A visual storytelling project capturing atmosphere and routine through
+                observation, pacing, and imagery without relying on dialogue.
+              </p>
+              <a href="https://sstruffi.github.io/silent-documentary/" class="view-button">View Project</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="audio-placeholder">
+              <p class="audio-tag">Audio Project</p>
+              <h3>Where the Ice Feels Like Home</h3>
+              <p>The Ice Keeps Calling</p>
+            </div>
+            <div class="project-info">
+              <p class="project-label">Audio Documentary</p>
+              <h3>Audio Documentary</h3>
+              <p>
+                A sound-driven documentary using voice, ambient audio, and editing
+                to create an immersive listening experience around hockey and identity.
+              </p>
+              <a href="https://sstruffi.github.io/audio-documentary/" class="view-button">View Project</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <img src="hurtful.jpeg" alt="Preview image for Hurtful concept film">
+            <div class="project-info">
+              <p class="project-label">Concept Film</p>
+              <h3>Hurtful</h3>
+              <p>
+                A conceptual video that uses symbolism, repetition, and visual breakdown
+                to communicate emotion through a strong visual narrative.
+              </p>
+              <a href="https://sstruffi.github.io/hurtful/" class="view-button">View Project</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container section" id="web-app">
+      <section class="section-box">
+        <div class="section-header">
+          <h2>Web and App</h2>
+          <div class="divider"></div>
+          <p>
+            Interface and product design work focused on accessibility,
+            usability, visual systems, and thoughtful digital experiences.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <div class="project-card">
+            <img src="budget_bunny.jpeg" alt="Preview image for Budget Bunny app project">
+            <div class="project-info">
+              <p class="project-label">UX / App Design</p>
+              <h3>Budget Bunny</h3>
+              <p>
+                A student budgeting app concept designed to make financial habits,
+                tracking, scholarships, and support feel clearer and more approachable.
+              </p>
+              <a href="https://sstruffi.github.io/budget-bunny/" class="view-button">View Project</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container section" id="branding">
+      <section class="section-box">
+        <div class="section-header">
+          <h2>Branding</h2>
+          <div class="divider"></div>
+          <p>
+            Branding work centered on identity, storytelling, typography,
+            and building cohesive visual systems.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <div class="project-card">
+            <img src="annabelle.jpeg" alt="Preview image for Annabelle branding project">
+            <div class="project-info">
+              <p class="project-label">Brand Identity</p>
+              <h3>Annabelle</h3>
+              <p>
+                A branding project focused on visual identity development,
+                using typography, colour, and layout to create a polished
+                and memorable brand presence.
+              </p>
+              <a href="https://sstruffi.github.io/Annabelle-Rebrand/" class="view-button">View Project</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="container section" id="graphic-design">
+      <section class="section-box">
+        <div class="section-header">
+          <h2>Graphic Design</h2>
+          <div class="divider"></div>
+          <p>
+            Graphic design work focused on visual communication,
+            typography, storytelling, and expressive layout.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <div class="project-card">
+            <img src="bold.jpeg" alt="Preview image for Good Design Is poster">
+            <div class="project-info">
+              <p class="project-label">Poster Design</p>
+              <h3>Good Design Is...</h3>
+              <p>
+                A poster project based on my personal design philosophy,
+                using bold visuals and expressive typography to communicate
+                what strong design means to me.
+              </p>
+              <a href="https://sstruffi.github.io/good-design/" class="view-button">View Project</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>@ 2026 Sara Truffi - All Rights Reserved</footer>
+  </body>
+</html>
